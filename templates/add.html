@@ -1,0 +1,23 @@
+{% extends "login.html" %}
+{% block title%} Add Task {% endblock %}
+
+{% block body %}
+<div class="bg">
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                     <h1 class="{{ category }}">{{ message }}</h1>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <h1 class="title">Add Task</h1>
+    <form class="inputCon" method="post" action="{{ url_for('addtask') }}">
+        <input class="input user" type="text" name="task" maxlength="20" placeholder="Enter Task" required><br>
+        <input class="submit" type="submit" value="Submit">
+    </form>
+
+    <a href="{{ url_for('tasks') }}" class="txt signup">View Tasks</a>
+
+{% endblock %}

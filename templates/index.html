@@ -1,0 +1,39 @@
+{% extends 'login.html' %}
+{% block title %} Task Manager {% endblock %}
+
+{% block body %}
+
+    <div class="bg taskbg">
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                     <h1 class="{{ category }}">{{ message }}</h1>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <h1 class="name">Welcome, {{ current_user.username }}</h1>
+    <h2 class="title tsks">Your Tasks:</h2>
+    {% if tasks %}
+    <ul>
+        {% for task in tasks %}
+            <li class="list">
+                {{ task.content }} 
+                <form action="{{ url_for('delete_task', task_id=task.id)}}" method="POST" class="delete">
+                    <button class="del">
+                        Delete Task
+                    </button>
+                </form>
+            </li>
+                {% endfor %}
+        {% else %}
+            <li class="lists"> No Tasks Yet</li>
+        {% endif %}
+
+    </ul>
+
+    <div class="addCon">
+        <a href="{{ url_for('addtask') }}" class="txt add"> View Tasks </a>
+    </div>
+{% endblock %}

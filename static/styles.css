@@ -95,3 +95,66 @@ body {
 .signup:hover {
     color: white;
 }
+
+.addCon {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.add:hover {
+    color: white;
+}
+
+.name {
+    font-size: 40px;
+    font-size: 50px;
+    font-family: 'Arial';
+}
+
+.tsks {
+    font-size: 40px;
+    font-family: 'Arial';
+}
+
+.lists {
+    list-style: none;
+    font-size: 20px;
+    margin-bottom: 20rem;
+}
+
+.list {
+    list-style: none;
+    font-size: 30px;
+    margin-right: 2rem;
+}
+
+.taskbg {
+    overflow-y: scroll;
+}
+
+.delete {
+    display: inline;
+    margin-left: 25px;
+}
+
+.del {
+    height: 20px;
+    width: 100px;
+    border-radius: 30px;
+    border: 2px rgb(66, 122, 136) solid;;
+    background-color: white;
+    transition: all 0.3s ease;
+    margin-bottom: 2rem;
+}
+
+.del:hover {
+    background-color: rgb(43, 80, 92);
+    color: white;
+    cursor: pointer;
+    transform: translateY(-6px);
+}
+
+.add {
+    color: black;
+}
