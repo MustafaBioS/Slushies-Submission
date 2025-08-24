@@ -25,6 +25,11 @@
                         Delete Task
                     </button>
                 </form>
+                <form action="{{ url_for('edit_task', task_id=task.id)}}" method="POST" class="delete">
+                    <button class="del edit">
+                        Edit Task
+                    </button>
+                </form>
             </li>
                 {% endfor %}
         {% else %}
@@ -34,6 +39,6 @@
     </ul>
 
     <div class="addCon">
-        <a href="{{ url_for('addtask') }}" class="txt add"> View Tasks </a>
+        <a href="{{ url_for('addtask') }}" class="txt add"> Add Tasks </a>
     </div>
 {% endblock %}

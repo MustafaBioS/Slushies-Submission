@@ -90,3 +90,23 @@ def register_routes(app, db, bcrypt):
         db.session.commit()
         flash("Task Deleted Successfully", 'flash')
         return redirect(url_for('tasks'))
+    
+    @app.route('/edit/<int:task_id>', methods=['GET', 'POST'])
+    @login_required
+    def edit_task(task_id):
+        
+        task = Task.query.get_or_404(task_id)
+
+        if request.method == "GET":
+            return render_template('edit.html', task=task)
+
+        new_content = request.form.get('task')
+
+        if not new_content:
+            flash("Task Cannot Be Empty", 'flash')
+            return redirect(url_for('edit_task', task_id=task_id))
+        
+        task.content = new_content
+        db.session.commit()
+        flash('Task Edited Successfully', 'flash')
+        return redirect(url_for('tasks'))
