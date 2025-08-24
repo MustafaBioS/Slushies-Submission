@@ -1,27 +1,36 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>{% block title %} Login {% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
+    {% block body %}
     <div class="bg">
-
+    
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             {% for category, message in messages %}
-                <h1 class="{{ category }}">{{ message }}</h1>
+                     <h1 class="{{ category }}">{{ message }}</h1>
             {% endfor %}
         {% endif %}
     {% endwith %}
 
+    
         <h1 class="title">Login</h1>
         <form class="inputCon" method="post" action="{{ url_for('login') }}">
             <input class="input user" type="text" name="username" maxlength="20" minlength="8" placeholder="Username" required><br>
             <input class="input password" type="password" name="password" maxlength="20" minlength="8" placeholder="Password" required><br>
             <input class="submit" type="submit" value="Submit">
         </form>
+        <span class="txt spn">No Account? 
+            <a href="{{ url_for('signup') }}" class="txt signup">
+                Sign Up
+            </a>
+        </span>
     </div>
+    {% endblock %}
 </body>
 </html>

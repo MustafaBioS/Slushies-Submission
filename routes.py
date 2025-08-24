@@ -1,5 +1,6 @@
 from flask import render_template, request, url_for, redirect, flash
 from flask_login import login_user
+import sqlalchemy
 from models import User
 
 def register_routes(app, db, bcrypt):
@@ -18,7 +19,7 @@ def register_routes(app, db, bcrypt):
                 return "login succesful"
 
             else:
-                flash("Incorrect Username or Password", "failed")
+                flash("Incorrect Username or Password", "flash")
                 return redirect(url_for('login'))
 
 
@@ -27,18 +28,27 @@ def register_routes(app, db, bcrypt):
         if request.method == 'GET':
             return render_template('signup.html')
         if request.method == 'POST':
+
             username = request.form.get('username')
             password = request.form.get('password')
 
-            hashed_password = bcrypt.generate_password_hash(password)
+            try:
 
-            user = User(username=username, password=hashed_password)
+                hashed_password = bcrypt.generate_password_hash(password)
 
-            db.session.add(user)
-            db.session.commit()
-            return redirect(url_for('login'))
+                user = User(username=username, password=hashed_password)
+
+                db.session.add(user)
+                db.session.commit()
+
+                flash("Account Created Succesfully", "flash")
+                return redirect(url_for('login'))
+            
+            except sqlalchemy.exc.IntegrityError:
+                flash("Username Already Taken")
+                return redirect((url_for('signup')))
 
         else:
-            flash("Signup Failed")
+            flash("Signup Failed", "flash")
             return redirect(url_for('signup'))
 

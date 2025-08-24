@@ -1,10 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Signup</title>
-</head>
-<body>
+{% extends "login.html" %}
+{% block title%} Sign Up {% endblock %}
 
-</body>
-</html>
+{% block body %}
+<div class="bg">
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                     <h1 class="{{ category }}">{{ message }}</h1>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <h1 class="title">Sign Up</h1>
+    <form class="inputCon" method="post" action="{{ url_for('signup') }}">
+        <input class="input user" type="text" name="username" maxlength="20" minlength="8" placeholder="Username" required><br>
+        <input class="input password" type="password" name="password" maxlength="20" minlength="8" placeholder="Password" required><br>
+        <input class="submit" type="submit" value="Submit">
+    </form>
+    <span class="txt spn">Already Have An Account? 
+        <a href="{{ url_for('login') }}" class="txt signup">
+            Log In
+        </a>
+    </span>
+
+{% endblock %}
