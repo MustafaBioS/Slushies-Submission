@@ -93,11 +93,11 @@ virtualenv
 websockets
 Werkzeug
 whitenoise
-windows-curses
 wrapt
 yt-dlp
 ytmusicapi
 zope.interface
+
 
 
 
