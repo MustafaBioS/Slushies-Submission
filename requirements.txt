@@ -49,7 +49,7 @@ packaging
 pefile
 platformdirs
 pyasn1
-pyasn1_module
+pyasn1_modules
 pycparser
 pydantic
 pydantic_core
@@ -98,5 +98,6 @@ wrapt
 yt-dlp
 ytmusicapi
 zope.interface
+
 
 
