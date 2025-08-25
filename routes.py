@@ -1,6 +1,8 @@
 from flask import render_template, request, url_for, redirect, flash
 from flask_login import login_required, login_user, current_user
 import sqlalchemy
+import requests
+import random
 from models import User
 from models import Task
 
@@ -58,10 +60,12 @@ def register_routes(app, db, bcrypt):
     def addtask():
         if request.method == 'GET':
             return render_template('add.html')
-        
+
         if request.method == 'POST':
 
             task_content = request.form.get('task')
+
+
 
             new_task = Task(content=task_content, user_id=current_user.id)
 
@@ -79,12 +83,25 @@ def register_routes(app, db, bcrypt):
     @login_required
     def tasks():
         tasks = Task.query.filter_by(user_id=current_user.id).all()
-        return render_template('index.html', tasks=tasks)
+
+        response = requests.get('https://dummyjson.com/quotes')
+
+        if response.status_code == 200:
+            data = response.json()
+            quotes_list = data['quotes']
+
+            random_quote = random.choice(quotes_list)
+
+
+        return render_template('index.html', tasks=tasks, quotes=random_quote)
     
     @app.route('/delete/<int:task_id>', methods=['POST'])
     @login_required
     def delete_task(task_id):
+
+
         task = Task.query.get_or_404(task_id)
+
 
         db.session.delete(task)
         db.session.commit()

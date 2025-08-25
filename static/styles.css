@@ -161,3 +161,8 @@ body {
 .add {
     color: black;
 }
+
+.quote {
+    position: absolute;
+    margin-bottom: 850px;
+}

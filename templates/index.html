@@ -3,7 +3,11 @@
 
 {% block body %}
 
+
+    <h1 class="quote">"{{ quotes['quote'] }}"</h1>
+
     <div class="bg taskbg">
+
 
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
