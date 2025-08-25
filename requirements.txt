@@ -28,7 +28,7 @@ filelock
 Flask
 Flask-Bcrypt
 Flask-Login
-Flask-Migrat
+Flask-Migrate
 Flask-SQLAlchemy
 greenlet
 gunicorn
@@ -98,4 +98,5 @@ wrapt
 yt-dlp
 ytmusicapi
 zope.interface
+
 
